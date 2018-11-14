@@ -1,0 +1,30 @@
+body {
+	background-color: orange;
+}
+
+h1 {
+	text-align: center;
+	color: purple;
+}
+
+#twd-jumbo {
+	background: url("../images/religions.png");
+}
+
+#heading {
+	font-weight: bold;
+}
+
+
+.twd-opt {
+	margin-right: 20px;
+}
+
+#start-button {
+	background-color: green;
+}
+
+#restart-button {
+
+	background-color: purple;
+}
