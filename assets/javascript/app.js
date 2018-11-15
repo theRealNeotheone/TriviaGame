@@ -46,7 +46,7 @@ function submitAns() {
 		var userSelection = $("#responses input:radio[name=optionsRadios]:checked").val();
 		userAns.push(userSelection);
 		console.log(userAns);
-		nextQ();
+		nextQuestions();
 	});
 };
 	
@@ -68,7 +68,7 @@ function decrement() {
 		var userSelection = $("#responses input:radio[name=optionsRadios]:checked").val();
 		userAns.push(userSelection);
 		console.log(userAns);
-		nextQ();
+		nextQuestions();
 	};
 };
 
@@ -97,8 +97,8 @@ function createRadios() {
 };
 
 //Function to display the given question
-function displayQ() {
-	clearQ();
+function displayQuest() {
+	clearQuestions();
 	resetTimer();
 	$(".questionX").html(questions[questionCounter].question);
 	//Calling the function to display the response options
@@ -111,12 +111,12 @@ function displayQ() {
 
 //Display start page
 function displayStart() {
-	$("#content").append('<a href="#" class="btn btn-primary btn-lg" id="start-button">' + "Start" + '</a>');
+	$("#content").append('<a href="#" class="btn btn-primary btn-lg" id="start-button">' + "Start Trivia" + '</a>');
 	//Start game
 	$("#start-button").on("click", function(event) {
 		event.preventDefault();
 		//Displays the first question
-		firstQ();
+		questionOne();
 		resetTimer();
 	});
 };
@@ -133,20 +133,20 @@ function reset() {
 
 //Display end page
 function displayEnd() {
-	clearQ();
+	clearQuestions();
 	$("#content").append('<h3>' + "Correct answers: " + correct + '</h3><br><h3>' + "Incorrect answers: " + incorrect + '</h3><br><h3>' + "Skipped questions: " + missed + '</h3><br><br><a href="#" class="btn btn-primary btn-lg" id="restart-button">' + "Restart Trivia" + '</a>');
 	//Restart game
 	$("#restart-button").on("click", function(event) {
 		event.preventDefault();
 		//Displays the first question
 		reset();
-		clearQ();
+		clearQuestions();
 		displayStart();
 	});
 };
 
 //Function to clear the question
-function clearQ() {
+function clearQuestions() {
 	var questionDiv = $(".questionX");
 	questionDiv.empty();
 
@@ -163,8 +163,8 @@ function clearQ() {
 };
 
 //Showing whether answer was right/wrong
-function checkQ() {
-	clearQ();
+function checkQuestions() {
+	clearQuestions();
 	var correctAnswer = questions[questionCounter].choicesAnswer;
 	if (userAns[0] == questions[questionCounter].choicesAnswer) {
 		$("#content").append('<h3>'+"Congratulations! You chose the right answer!" + '</h3>');
@@ -184,8 +184,8 @@ function checkQ() {
 };
 
 //Function to change the question 
-function nextQ() {
-	checkQ();
+function nextQuestions() {
+	checkQuestions();
 	//Incrementing the count by 1
 	questionCounter++;
 	//If the count is the same as the length of the question array, the counts reset to 0
@@ -193,15 +193,15 @@ function nextQ() {
 		setTimeout(displayEnd, ansTimeout);
 	} 
 	else {
-		setTimeout(displayQ, ansTimeout);
+		setTimeout(displayQuest, ansTimeout);
 	};
 };
 
 //Function to call the first question
-function firstQ() {
+function questionOne() {
 	var startContent = $("#content");
 	startContent.empty(); 
-	displayQ();
+	displayQuest();
 };
 
 //Displays the start page
